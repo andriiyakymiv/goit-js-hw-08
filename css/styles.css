@@ -32,6 +32,7 @@ img {
 .gallery-item {
     width: 360px;
     height: 200px;
+    flex-basis: calc((1128px - 24px * 2) / 3);
     transition: transform 550ms ease-in-out;
     cursor: pointer;
 }
