@@ -66,16 +66,6 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 
-// const createImageMarkup = ({ preview, original, description }) => {
-//   return `
-//     <li class="gallery-item">
-//         <a class="gallery-link" href="large-image.jpg">
-//             <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description}"/>
-//         </a>
-//     </li>
-//     `;
-// };
-
 const createGallery = images.map(
   ({ preview, original, description }) => `
     <li class="gallery-item">
@@ -87,3 +77,16 @@ const createGallery = images.map(
 );
 
 gallery.insertAdjacentHTML('afterbegin', createGallery.join(''));
+
+const openModal = function (event) {
+  event.preventDefault();
+  if (!event.target.classList.contains('gallery-image')) {
+    return;
+  }
+  const selectedImage = event.target.dataset.source;
+  basicLightbox
+    .create(`<img src="${selectedImage}" width="1112" height="640">`)
+    .show();
+};
+
+gallery.addEventListener('click', openModal);
